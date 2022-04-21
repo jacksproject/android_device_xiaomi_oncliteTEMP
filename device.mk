@@ -16,6 +16,9 @@
 
 $(call inherit-product, vendor/xiaomi/onclite/onclite-vendor.mk)
 
+# GApps
+$(call inherit-product-if-exists, android/vendor/gapps/config.mk)
+
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay-lineage
