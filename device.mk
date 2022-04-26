@@ -16,9 +16,6 @@
 
 $(call inherit-product, vendor/xiaomi/onclite/onclite-vendor.mk)
 
-# GApps
-$(call inherit-product-if-exists, android/vendor/gapps/config.mk)
-
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay-lineage
@@ -133,9 +130,6 @@ PRODUCT_PACKAGES += \
 # Component overrides
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/component-overrides.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/component-overrides.xml
-
-# Dex
-PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER := verify
 
 # Display
 PRODUCT_PACKAGES += \
@@ -308,9 +302,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     XiaomiParts
 
-PRODUCT_COPY_FILES += \ 
-    $(LOCAL_PATH)/parts/privapp-permissions-parts.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-parts.xml
-
 # Power
 PRODUCT_PACKAGES += \
     android.hardware.power-service-qti \
@@ -354,10 +345,6 @@ PRODUCT_PACKAGES += \
     init.qcom.bt.sh \
     init.qcom.early_boot.sh \
     init.qcom.post_boot.sh
-
-# Remove unwanted packages
-PRODUCT_PACKAGES += \
-    RemovePackages
 
 # RenderScript HAL
 PRODUCT_PACKAGES += \
@@ -410,10 +397,8 @@ PRODUCT_PACKAGES += \
 
 # Vibrator
 PRODUCT_PACKAGES += \
-    vendor.qti.hardware.vibrator.service
-
-# VNDK
-PRODUCT_EXTRA_VNDK_VERSIONS := 30
+    android.hardware.vibrator@1.0-impl \
+    android.hardware.vibrator@1.0-service
 
 # Whitelisted app
 PRODUCT_COPY_FILES += \
